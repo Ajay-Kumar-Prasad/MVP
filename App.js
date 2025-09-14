@@ -9,6 +9,9 @@ import Profile from "./screens/Profile";
 import Safety from "./screens/Safety";
 import Transparency from "./screens/Transparency";
 import QRScreen from "./screens/QRScreen";
+import SafetyScore from "./screens/SafetyScore";
+import GeoAlerts from "./screens/GeoAlerts";
+import Tracking from "./screens/Tracking";
 import { Ionicons } from "@expo/vector-icons";
 
 const Stack = createNativeStackNavigator();
@@ -49,6 +52,26 @@ export default function App() {
           name="ConsentDashboard"
           component={ConsentDashboard}
           options={{ title: "Consent Dashboard" }}
+        />
+        <Stack.Screen
+          name="SafetyScore"
+          component={SafetyScore}
+          options={{ title: "Tourist Safety Score" }}
+        />
+        <Stack.Screen
+          name="GeoAlerts"
+          component={GeoAlerts}
+          options={{ title: "Geo-Fencing Alerts" }}
+        />
+        <Stack.Screen
+          name="PanicButton"
+          component={Safety} // Using Safety.js as Panic Button
+          options={{ title: "Panic Button" }}
+        />
+        <Stack.Screen
+          name="Tracking"
+          component={Tracking}
+          options={{ title: "Real-Time Tracking" }}
         />
         <Stack.Screen
           name="MainTabs"

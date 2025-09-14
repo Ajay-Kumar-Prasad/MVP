@@ -52,7 +52,7 @@ export default function ConsentDashboard({ navigation }) {
       <TouchableOpacity
         style={[styles.button, { backgroundColor: consent ? "#007AFF" : "gray" }]}
         disabled={!consent}
-        onPress={() => navigation.replace("MainTabs")}
+        onPress={() => navigation.replace("SafetyScore")}
       >
         <Text style={styles.buttonText}>Accept & Proceed</Text>
       </TouchableOpacity>
