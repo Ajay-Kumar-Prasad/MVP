@@ -21,20 +21,58 @@ function MainTabs() {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ color, size, focused }) => {
           let iconName;
-          if (route.name === "Profile") iconName = "person";
-          else if (route.name === "Safety") iconName = "alert-circle";
-          else if (route.name === "Transparency") iconName = "list";
-          else if (route.name === "Tourist ID") iconName = "qr-code";
+          if (route.name === "Profile") iconName = focused ? "person" : "person-outline";
+          else if (route.name === "Safety") iconName = focused ? "shield" : "shield-outline";
+          else if (route.name === "Transparency") iconName = focused ? "document-text" : "document-text-outline";
+          else if (route.name === "Tourist ID") iconName = focused ? "qr-code" : "qr-code-outline";
           return <Ionicons name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: '#6366F1',
+        tabBarInactiveTintColor: '#9CA3AF',
+        tabBarStyle: {
+          backgroundColor: '#FFFFFF',
+          borderTopWidth: 1,
+          borderTopColor: '#E5E7EB',
+          paddingTop: 8,
+          paddingBottom: 8,
+          height: 60,
+        },
+        tabBarLabelStyle: {
+          fontSize: 12,
+          fontWeight: '500',
+          marginTop: 4,
+        },
+        headerStyle: {
+          backgroundColor: '#6366F1',
+        },
+        headerTintColor: '#FFFFFF',
+        headerTitleStyle: {
+          fontWeight: 'bold',
         },
       })}
     >
-      <Tab.Screen name="Profile" component={Profile} />
-      <Tab.Screen name="Safety" component={Safety} />
-      <Tab.Screen name="Transparency" component={Transparency} />
-      <Tab.Screen name="Tourist ID" component={QRScreen} />
+      <Tab.Screen 
+        name="Profile" 
+        component={Profile}
+        options={{ title: "Profile" }}
+      />
+      <Tab.Screen 
+        name="Safety" 
+        component={Safety}
+        options={{ title: "Safety" }}
+      />
+      <Tab.Screen 
+        name="Transparency" 
+        component={Transparency}
+        options={{ title: "Transparency" }}
+      />
+      <Tab.Screen 
+        name="Tourist ID" 
+        component={QRScreen}
+        options={{ title: "Tourist ID" }}
+      />
     </Tab.Navigator>
   );
 }
@@ -42,7 +80,20 @@ function MainTabs() {
 export default function App() {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Onboarding">
+      <Stack.Navigator 
+        initialRouteName="Onboarding"
+        screenOptions={{
+          headerStyle: {
+            backgroundColor: '#6366F1',
+          },
+          headerTintColor: '#FFFFFF',
+          headerTitleStyle: {
+            fontWeight: 'bold',
+            fontSize: 18,
+          },
+          headerBackTitleVisible: false,
+        }}
+      >
         <Stack.Screen
           name="Onboarding"
           component={Onboarding}
@@ -51,27 +102,42 @@ export default function App() {
         <Stack.Screen
           name="ConsentDashboard"
           component={ConsentDashboard}
-          options={{ title: "Consent Dashboard" }}
+          options={{ 
+            title: "Consent Dashboard",
+            headerBackTitle: "Back"
+          }}
         />
         <Stack.Screen
           name="SafetyScore"
           component={SafetyScore}
-          options={{ title: "Tourist Safety Score" }}
+          options={{ 
+            title: "Safety Assessment",
+            headerBackTitle: "Back"
+          }}
         />
         <Stack.Screen
           name="GeoAlerts"
           component={GeoAlerts}
-          options={{ title: "Geo-Fencing Alerts" }}
+          options={{ 
+            title: "Geo-Fencing Alerts",
+            headerBackTitle: "Back"
+          }}
         />
         <Stack.Screen
           name="PanicButton"
           component={Safety} // Using Safety.js as Panic Button
-          options={{ title: "Panic Button" }}
+          options={{ 
+            title: "Safety Settings",
+            headerBackTitle: "Back"
+          }}
         />
         <Stack.Screen
           name="Tracking"
           component={Tracking}
-          options={{ title: "Real-Time Tracking" }}
+          options={{ 
+            title: "Real-Time Tracking",
+            headerBackTitle: "Back"
+          }}
         />
         <Stack.Screen
           name="MainTabs"
